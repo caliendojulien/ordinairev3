@@ -3,18 +3,45 @@
 {% block title %}Hello OrdinaireController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h2>Semaine {{  }} du {{  }} au {{  }}</h2><br>
+    <p>Total mangeant : </p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table>
+        <tr>
+            <th></th>
+            <th>Lundi</th>
+            <th>Mardi</th>
+            <th>Mercredi</th>
+            <th>Jeudi</th>
+            <th>Vendredi</th>
+        </tr>
+        <tr>
+            <th>Midi</th>
+            <td>{{ SOMME DES MANGEANT }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Soir</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/stagiaire/PhpstormProjects/ordinairev3/src/Controller/OrdinaireController.php'|file_link(0) }}">src/Controller/OrdinaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/stagiaire/PhpstormProjects/ordinairev3/templates/ordinaire/index.html.twig'|file_link(0) }}">templates/ordinaire/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+    {% for week in weeks|sort %}
+    <li><p>{{ SECTION }} - {{ section.week.X }} - {{ section.week.Y }} - {{ section.week.Z }} - {{ section.week.Civil }}</p></li>
+    {% endfor %}
+
+    {% foreach (section as sectionG)%}
+    <tr><td>this.section</td><td>this.section.X</td><td>this.section.Y</td><td>this.section.Z</td></tr>
+    {% endfor %}
+
+
+
 {% endblock %}

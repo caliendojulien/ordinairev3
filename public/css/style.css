@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+* {
+    font-family: 'Silkscreen', cursive;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+}
+
+header{
+    padding-top: 10px;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 13%, rgba(101,122,255,1) 100%);
+}
+ul{
+    display: flex;
+    justify-content: space-around;
+
+}
+li, a {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+footer{
+    background: linear-gradient(180deg, rgba(255,255,255,1) 13%, rgba(101,122,255,1) 100%);
+}
