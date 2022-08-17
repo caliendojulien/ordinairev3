@@ -4,10 +4,11 @@
 {% block title %}Hello SectionHeadController!{% endblock %}
 
 {% block body %}
+    <input type="date" id="datePicker" value="{{ 'now' | date('Y-m-d') }}">
 
     <div class="tableau">
         {% for section in sections %}
-            <input type="date" id="datePicker">
+
             <h3 class="column1">{{ section.name }}</h3>
             <h4 class="column1">Numéro de carte</h4><h4 class="column2">Grade</h4><h4 class="column3">Nom</h4><h4
                 class="column4">Prenom</h4><h4 class="column5">Midi de Lundi à Jeudi</h4><h4 class="column6">Soir de Lundi à Jeudi</h4>
