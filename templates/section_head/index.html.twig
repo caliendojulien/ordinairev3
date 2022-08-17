@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/section_head/index.css') }}">{% endblock %}
 {% block title %}Hello SectionHeadController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/stagiaire/PhpstormProjects/ordinairev3/src/Controller/SectionHeadController.php'|file_link(0) }}">src/Controller/SectionHeadController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/stagiaire/PhpstormProjects/ordinairev3/templates/section_head/index.html.twig'|file_link(0) }}">templates/section_head/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="tableau">
+        {% for section in sections %}
+            <input type="date" id="datePicker">
+            <h3 class="column1">{{ section.name }}</h3>
+            <h4 class="column1">Numéro de carte</h4><h4 class="column2">Grade</h4><h4 class="column3">Nom</h4><h4
+                class="column4">Prenom</h4><h4 class="column5">Midi de Lundi à Jeudi</h4><h4 class="column6">Soir de Lundi à Jeudi</h4>
+            {% for user in users %}
+                {% if user.section == section %}
+                    <div class="column1">{{ user.card }}</div>
+                    <div class="column2">{{ user.grade }}</div>
+                    <div class="column3">{{ user.name }}</div>
+                    <div class="column4">{{ user.firstName }}</div>
+                    <div class="column5">
+                        <input type="checkbox" onchange="addWeekMidi({{ user.id }},this)"></div>
+                    <div class="column6">
+                        <input type="checkbox" onchange="addWeekSoir({{ user.id }},this)"></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <script src="{{ asset('js/decompte.js') }}"></script>
+    </div>
 {% endblock %}
