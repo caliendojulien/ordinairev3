@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Section;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -23,7 +24,13 @@ class RegistrationFormType extends AbstractType
             ->add('name')
             ->add('firstname')
             ->add('grade')
-            ->add('section', EntityType::class,['choice_label'=>'name','class'=>Section::class])
+            ->add('section', EntityType::class,
+                ['choice_label'=>'name',
+                    'class'=>Section::class,
+                    'query_builder' => function (EntityRepository $entityRepository) {
+                return $entityRepository->createQueryBuilder('s')->where('s.endDate > :now')->setParameter('now', new \DateTime());
+                    }
+                ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

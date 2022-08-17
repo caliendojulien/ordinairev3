@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(sectionForm) }}
+    {{ form_row(sectionForm.name) }}
+    {{ form_row(sectionForm.endDate) }}
+    <input type="submit">
+    {{ form_end(sectionForm) }}
+{% endblock %}
+
+{% block title %}
+    Nouvelle section
+{% endblock %}
+
