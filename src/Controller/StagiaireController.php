@@ -88,46 +88,4 @@ class StagiaireController extends AbstractController
 
         return $this->json($exist);
     }
-
-    #[Route('/addMidi', name: '_addMidi')]
-    public function addMidi(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
-    {
-        $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date')), 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
-        dump(new \DateTime($request->request->get('date')));
-        if (!$exist) {
-            $meal = new Meal();
-            $meal->setDate(new \DateTime($request->request->get('date')));
-            $meal->setUser($userRepository->findOneBy(['id' => $request->request->get('userId')]));
-            $meal->setMidi($request->request->get('value') == 'true');
-            $meal->setSoir(false);
-            $entityManager->persist($meal);
-            $entityManager->flush();
-        } else {
-            $exist->setMidi($request->request->get('value') == 'true');
-            $entityManager->flush();
-        }
-        return $this->json($exist);
-    }
-
-    #[Route('/addSoir', name: '_addSoir')]
-    public function addSoir(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, MealRepository $mealRepository): Response
-    {
-        $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date')), 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
-        dump((int)$request->request->get('userId'));
-        if (!$exist) {
-            $meal = new Meal();
-            $meal->setDate(new \DateTime($request->request->get('date')));
-            $meal->setUser($userRepository->findOneBy(['id' => $request->request->get('userId')]));
-            $meal->setMidi(false);
-            $meal->setSoir($request->request->get('value') == 'true');
-            $entityManager->persist($meal);
-            $entityManager->flush();
-        } else {
-            dump($request->request->get('value'));
-            $exist->setSoir($request->request->get('value') == 'true');
-            $entityManager->flush();
-        }
-        $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date'))]);
-
-        return $this->json($exist);}
 }
