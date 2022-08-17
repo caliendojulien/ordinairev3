@@ -3,44 +3,45 @@
 {% block title %}Hello OrdinaireController!{% endblock %}
 
 {% block body %}
-    <h2>Semaine {{  }} du {{  }} au {{  }}</h2><br>
-    <p>Total mangeant : </p>
+    <h2>Semaine du au</h2>
+{#    <h2>Semaine {{  }} du {{  }} au {{  }}</h2><br>#}
+{#    <p>Total mangeant : </p>#}
 
-    <table>
-        <tr>
-            <th></th>
-            <th>Lundi</th>
-            <th>Mardi</th>
-            <th>Mercredi</th>
-            <th>Jeudi</th>
-            <th>Vendredi</th>
-        </tr>
-        <tr>
-            <th>Midi</th>
-            <td>{{ SOMME DES MANGEANT }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Soir</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+{#    <table>#}
+{#        <tr>#}
+{#            <th></th>#}
+{#            <th>Lundi</th>#}
+{#            <th>Mardi</th>#}
+{#            <th>Mercredi</th>#}
+{#            <th>Jeudi</th>#}
+{#            <th>Vendredi</th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>Midi</th>#}
+{#            <td>{{ SOMME DES MANGEANT }}</td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>Soir</th>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#        </tr>#}
+{#    </table>#}
 
 
-    {% for week in weeks|sort %}
-    <li><p>{{ SECTION }} - {{ section.week.X }} - {{ section.week.Y }} - {{ section.week.Z }} - {{ section.week.Civil }}</p></li>
-    {% endfor %}
+{#    {% for week in weeks|sort %}#}
+{#    <li><p>{{ SECTION }} - {{ section.week.X }} - {{ section.week.Y }} - {{ section.week.Z }} - {{ section.week.Civil }}</p></li>#}
+{#    {% endfor %}#}
 
-    {% foreach (section as sectionG)%}
-    <tr><td>this.section</td><td>this.section.X</td><td>this.section.Y</td><td>this.section.Z</td></tr>
-    {% endfor %}
+{#    {% foreach (section as sectionG)%}#}
+{#    <tr><td>this.section</td><td>this.section.X</td><td>this.section.Y</td><td>this.section.Z</td></tr>#}
+{#    {% endfor %}#}
 
 
 
