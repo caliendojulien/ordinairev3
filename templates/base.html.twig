@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Bienvenue!{% endblock %}</title>
+    <link rel="icon" href="{{ asset('media/ico/Marianne.png') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
@@ -14,14 +15,21 @@
 <header>
     <nav>
         <ul>
+            <li><img src="{{ asset('media/ico/CMFP.png') }}" alt="" width="100px"></li>
             <li><a href="{{ path('main_home') }}">Accueil</a></li>
             <li><a href="{{ path('main_infos') }}">Liens utiles</a></li>
             {% if app.user %}
-                <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
-                <li><a href="{{ path('main_home') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} </a>
-                <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
+                {% if is_granted('ROLE_CDS') %}
+                    <li><a href="{{ path('sectionHead_home') }}">Decompte Rationnaire</a></li>
+{#                    <li><a href="{{ path('sectionHead_addSection') }}">Créer une section</a></li>#}
+                {% elseif is_granted('ROLE_STAGIAIRE')%}
+                    <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
+                {% elseif is_granted('ROLE_ORDINAIRE') %}
+                    <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
+                {% endif %}
+                <li><a href="{{ path('main_home') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} {{ app.user.firstname }}</a>
                     <br>
-                <a href="{{ path('app_logout') }}"><button>Déconnexion</button></a></li>
+                <a href="{{ path('app_logout') }}">Me déconnecter <img src="{{ asset('media/ico/Deconnection.png') }}" alt="Deconnection" width="20px"></a></li>
             {% else %}
                 <li><a href="{{ path('app_login') }}">Connexion</a></li>
             {% endif %}
