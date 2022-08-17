@@ -29,14 +29,14 @@
                 {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
 
                     <form>
-                        MIDI<input type="checkbox"
+                        MIDI<input class="custom" type="checkbox"
                                 {% for m in meals %}
                                     {% if m.date | date == c | date and m.midi == true %}
                                         checked
                                     {% endif %}
                                 {% endfor %}
                                    onchange="updateMidi('{{ c | date() }}', {{ app.user.id }},this)">
-                        SOIR<input type="checkbox"
+                        SOIR<input class="custom" type="checkbox"
                                 {% for m in meals %}
                                     {% if m.date | date == c | date and m.soir == true %}
                                         checked
