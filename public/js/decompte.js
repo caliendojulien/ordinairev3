@@ -4,7 +4,7 @@ function addWeekMidi(userId,value) {
     let xhr = new XMLHttpRequest();
     let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
     console.log(data)
-    xhr.open('POST', '/ChefDeSection/addWeekMidi')
+    xhr.open('POST', '/chefDeSection/addWeekMidi')
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
     xhr.send(data);
 }
@@ -14,7 +14,7 @@ function addWeekSoir(userId,value) {
     let xhr = new XMLHttpRequest();
     let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
     console.log(data)
-    xhr.open('POST', '/ChefDeSection/addWeekSoir')
+    xhr.open('POST', '/chefDeSection/addWeekSoir')
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
     xhr.send(data);
 }
