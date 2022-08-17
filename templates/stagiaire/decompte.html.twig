@@ -1,6 +1,87 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <style>
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+
+        .mon {
+            grid-column: 1;
+        }
+
+        .tue {
+            grid-column: 2;
+        }
+
+        .wed {
+            grid-column: 3;
+        }
+
+        .thu {
+            grid-column: 4;
+        }
+
+        .fri {
+            grid-column: 5;
+        }
+
+        .sat {
+            grid-column: 6;
+        }
+
+        .sun {
+            grid-column: 7;
+        }
+    </style>
+    <div class="calendar">
+        <div class="thu">{{ calendar[0] | date('F Y') }}</div>
+        <div class="mon">Lundi</div>
+        <div class="tue">Mardi</div>
+        <div class="wed">Mercredi</div>
+        <div class="thu">Jeudi</div>
+        <div class="fri">Vendredi</div>
+        <div class="sat">Samedi</div>
+        <div class="sun">Dimanche</div>
+        {% for c in calendar %}
+            <div class="{% if c | date("N") == 1 %}mon
+                        {% elseif c | date("N") == 2 %}tue
+                        {% elseif c | date("N") == 3 %}wed
+                        {% elseif c | date("N") == 4 %}thu
+                        {% elseif c | date("N") == 5 %}fri
+                        {% elseif c | date("N") == 6 %}sat
+                        {% elseif c | date("N") == 7 %}sun
+                        {% endif %}
+            ">
+
+
+                <p>{{ c | date("d/m/Y", "Europe/Paris") }}</p>
+                {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
+
+                    <form>
+                        MIDI<input type="checkbox"
+                                {% for m in meals %}
+                                    {% if m.date | date == c | date and m.midi == true %}
+                                        checked
+                                    {% endif %}
+                                {% endfor %}
+                                   onchange="updateMidi('{{ c | date() }}', {{ app.user.id }},this)">
+                        SOIR<input type="checkbox"
+                                {% for m in meals %}
+                                    {% if m.date | date == c | date and m.soir == true %}
+                                        checked
+                                    {% endif %}
+                                {% endfor %}
+                                   onchange="updateSoir('{{ c | date() }}', {{ app.user.id }}, this)">
+                    </form>
+
+                {% endif %}
+            </div>
+            <script src="{{ asset('js/decompte.js') }}"></script>
+        {% endfor %}
+    </div>
 
 
         {% for c in calendar %}
@@ -15,7 +96,6 @@
                 </tr>
             {% endif %}
         {% endfor %}
-
 
 {% endblock %}
 
