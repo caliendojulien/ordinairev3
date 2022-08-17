@@ -17,8 +17,9 @@
             <li><a href="{{ path('main_home') }}">Accueil</a></li>
             <li><a href="{{ path('main_infos') }}">Liens utiles</a></li>
             {% if app.user %}
+                <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
+                <li><a href="{{ path('app_section_head') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} </a>
                 <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
-                <li><a href="{{ path('app_section_head') }}">Bonjour  {{ app.user.name }} </a>
                     <br>
                 <a href="{{ path('app_logout') }}"><button>Déconnexion</button></a></li>
             {% else %}
@@ -31,6 +32,7 @@
 <footer>
     <nav>
         <ul>
+            {{ 'now' | date('d/m/Y','Europe/Paris') }}
             <li><a href="">A propos des Développeurs Web & Web Mobile</a></li>
             <li><a href="">Signaler un problème</a></li>
             <li><a href="">Suggérer un plat / menu</a></li>
