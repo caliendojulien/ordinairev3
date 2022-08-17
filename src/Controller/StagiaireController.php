@@ -30,11 +30,11 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/{month}/{year}', name: '_decompte')]
-    public function decompte(Request $request, MealRepository $mealRepository, $month, $year , UserRepository $userRepository): Response
+    public function decompte(Request $request, MealRepository $mealRepository, $month, $year, UserRepository $userRepository): Response
     {
-        $user = $userRepository->findOneBy(['card'=>$this->getUser()->getUserIdentifier()]);
-        $meals= $mealRepository->findByUserBetweenDate($user, \DateTime::createFromFormat('Y-m-d',$year.'-'.$month.'-01'));
-dump($meals);
+        $user = $userRepository->findOneBy(['card' => $this->getUser()->getUserIdentifier()]);
+        $meals = $mealRepository->findByUserBetweenDate($user, \DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-01'));
+        dump($meals);
         $calendar = [];
 
         $date = new \DateTime($year . '-' . $month . '-01');
@@ -44,7 +44,7 @@ dump($meals);
         }
 
         dump($calendar);
-        return $this->render('stagiaire/decompte.html.twig', compact('calendar','meals'));
+        return $this->render('stagiaire/decompte.html.twig', compact('calendar', 'meals'));
     }
 
     #[Route('/addMidi', name: '_addMidi')]
@@ -87,19 +87,5 @@ dump($meals);
         }
         $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date'))]);
 
-        return $this->json($exist);
-        
-    #[Route('/', name: '_decompte')]
-    public function decompte(Request $request, MealRepository $mealRepository): Response
-    {
-       // $meals = $mealRepository->findBy(['card' => $this->getUser()->getUserIdentifier()]);
-
-        $calendar = [];
-        for ($i = 0; $i < 21; $i++) {
-            $calendar[$i] = strtotime('+' . $i . ' days');
-        }
-
-        dump($calendar);
-        return $this->render('stagiaire/decompte.html.twig', compact('calendar'));
-    }
+        return $this->json($exist);}
 }
