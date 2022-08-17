@@ -18,8 +18,8 @@
             <li><a href="{{ path('main_infos') }}">Liens utiles</a></li>
             {% if app.user %}
                 <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
-                <li><a href="{{ path('app_section_head') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} </a>
-                <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
+                <li><a href="{{ path('main_home') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} </a>
+                <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
                     <br>
                 <a href="{{ path('app_logout') }}"><button>Déconnexion</button></a></li>
             {% else %}
