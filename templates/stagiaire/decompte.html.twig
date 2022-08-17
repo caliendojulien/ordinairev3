@@ -83,6 +83,20 @@
         {% endfor %}
     </div>
 
+
+        {% for c in calendar %}
+            {% if  c | date('N') == 1 %}
+                <tr>
+            {% endif %}
+
+            <p>{{ c | date("d/m/Y", "Europe/Paris") }}</p>
+            <form>MIDI<input type="checkbox">SOIR<input type="checkbox"></form>
+
+            {% if  c | date('N') == 7 %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+
 {% endblock %}
 
         {% block title %}

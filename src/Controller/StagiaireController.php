@@ -88,5 +88,18 @@ dump($meals);
         $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date'))]);
 
         return $this->json($exist);
+        
+    #[Route('/', name: '_decompte')]
+    public function decompte(Request $request, MealRepository $mealRepository): Response
+    {
+       // $meals = $mealRepository->findBy(['card' => $this->getUser()->getUserIdentifier()]);
+
+        $calendar = [];
+        for ($i = 0; $i < 21; $i++) {
+            $calendar[$i] = strtotime('+' . $i . ' days');
+        }
+
+        dump($calendar);
+        return $this->render('stagiaire/decompte.html.twig', compact('calendar'));
     }
 }
