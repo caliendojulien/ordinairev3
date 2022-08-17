@@ -1,50 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/stagiaire/decompte.css') }}">
+{% endblock %}
 {% block body %}
-    <style>
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-        }
-
-
-        .mon {
-            grid-column: 1;
-        }
-
-        .tue {
-            grid-column: 2;
-        }
-
-        .wed {
-            grid-column: 3;
-        }
-
-        .thu {
-            grid-column: 4;
-        }
-
-        .fri {
-            grid-column: 5;
-        }
-
-        .sat {
-            grid-column: 6;
-        }
-
-        .sun {
-            grid-column: 7;
-        }
-    </style>
     <div class="calendar">
-        <div class="thu">{{ calendar[0] | date('F Y') }}</div>
-        <div class="mon">Lundi</div>
-        <div class="tue">Mardi</div>
-        <div class="wed">Mercredi</div>
-        <div class="thu">Jeudi</div>
-        <div class="fri">Vendredi</div>
-        <div class="sat">Samedi</div>
-        <div class="sun">Dimanche</div>
+        <div class="thu top">{{ calendar[0] | date('F Y') }}</div>
+        <div class="mon top">Lundi</div>
+        <div class="tue top">Mardi</div>
+        <div class="wed top">Mercredi</div>
+        <div class="thu top">Jeudi</div>
+        <div class="fri top">Vendredi</div>
+        <div class="sat top">Samedi</div>
+        <div class="sun top">Dimanche</div>
         {% for c in calendar %}
             <div class="{% if c | date("N") == 1 %}mon
                         {% elseif c | date("N") == 2 %}tue
@@ -89,4 +57,3 @@
             Décompte stagiaire
 
         {% endblock %}
-
