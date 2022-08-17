@@ -19,6 +19,7 @@
             {% if app.user %}
                 <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
                 <li><a href="{{ path('app_section_head') }}">Bonjour {{ app.user.grade}} {{ app.user.name }} </a>
+                <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
                     <br>
                 <a href="{{ path('app_logout') }}"><button>Déconnexion</button></a></li>
             {% else %}
@@ -32,9 +33,9 @@
     <nav>
         <ul>
             {{ 'now' | date('d/m/Y','Europe/Paris') }}
-            <a href="">A propos des Développeurs Web & Web Mobile</a>
-            <a href="">Signaler un problème</a>
-            <a href="">Suggérer un plat / menu</a>
+            <li><a href="">A propos des Développeurs Web & Web Mobile</a></li>
+            <li><a href="">Signaler un problème</a></li>
+            <li><a href="">Suggérer un plat / menu</a></li>
         </ul>
     </nav>
 </footer>
