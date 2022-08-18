@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/stagiaire/decompte.css') }}">
+{% endblock %}
+{% block body %}
+    <h4>{{ user.grade }} {{ user.name }} {{ user.firstName }}</h4>
+    <div class="calendar">
+        <div class="thu top">{{ calendar[0] | date('F Y') }}</div>
+        <div class="mon top">Lundi</div>
+        <div class="tue top">Mardi</div>
+        <div class="wed top">Mercredi</div>
+        <div class="thu top">Jeudi</div>
+        <div class="fri top">Vendredi</div>
+        <div class="sat top">Samedi</div>
+        <div class="sun top">Dimanche</div>
+        {% for c in calendar %}
+            <div class="{% if c | date("N") == 1 %}mon
+                        {% elseif c | date("N") == 2 %}tue
+                        {% elseif c | date("N") == 3 %}wed
+                        {% elseif c | date("N") == 4 %}thu
+                        {% elseif c | date("N") == 5 %}fri
+                        {% elseif c | date("N") == 6 %}sat
+                        {% elseif c | date("N") == 7 %}sun
+                        {% endif %}
+            ">
+
+
+                <p>{{ c | date("d/m/Y", "Europe/Paris") }}</p>
+                {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
+
+                    <form>
+                        MIDI<input class="custom" type="checkbox"
+                                {% for m in meals %}
+                                    {% if m.date | date == c | date and m.midi == true %}
+                                        checked
+                                    {% endif %}
+                                {% endfor %}
+                                   onchange="updateMidi('{{ c | date() }}', {{ user.id }},this)">
+                        SOIR<input class="custom" type="checkbox"
+                                {% for m in meals %}
+                                    {% if m.date | date == c | date and m.soir == true %}
+                                        checked
+                                    {% endif %}
+                                {% endfor %}
+                                   onchange="updateSoir('{{ c | date() }}', {{ user.id }}, this)">
+                    </form>
+
+                {% endif %}
+            </div>
+            <script src="{{ asset('js/decompte.js') }}"></script>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block title %}
+    {{ user.grade }} {{ user.name }} {{ user.firstName }}
+{% endblock %}
+
