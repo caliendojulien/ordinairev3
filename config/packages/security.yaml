@@ -33,6 +33,8 @@ security:
     access_control:
         - { path: /ChefDeSection, roles: ROLE_CDS }
         - { path: /register, roles: ROLE_CDS }
+        - { path: /admin, roles: ROLE_CDS }
+        - { path: /admin, roles: ROLE_ADMIN }
         - { path: /stagiaire, roles: ROLE_STAGIAIRE }
         - { path: /ordinaire, roles: ROLE_ORDINAIRE }
 
