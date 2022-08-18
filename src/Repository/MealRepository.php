@@ -58,6 +58,17 @@ class MealRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findBetweenDate(\DateTime $date): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.date between :dateFirst AND :dateLast')
+            ->setParameter('dateFirst',$date->modify('first day of this month')->format('Y-m-d'))
+            ->setParameter('dateLast',$date->modify('last day of this month')->format('Y-m-d'))
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    public function findOneBySomeField($value): ?Meal
 //    {
 //        return $this->createQueryBuilder('m')
