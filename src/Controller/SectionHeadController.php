@@ -20,7 +20,8 @@ class SectionHeadController extends AbstractController
     #[Route('/', name: '_home')]
     public function index(Request $request, UserRepository $userRepository, SectionRepository $sectionRepository): Response
     {
-        $sections = $sectionRepository->findBy(['sectionhead' => $this->getUser()->getUserIdentifier()]);
+        //$sections = $sectionRepository->findBy(['sectionhead' => $this->getUser()->getUserIdentifier()]);
+        $sections = $sectionRepository->createQueryBuilder('s')->where('s.endDate > :now')->setParameter('now', new \DateTime())->getQuery()->getResult();
         $users = [];
         foreach ($sections as $section) {
             dump($userRepository->findBy(['section' => $section]));
@@ -34,6 +35,7 @@ class SectionHeadController extends AbstractController
     {
         $oneWeek = 4;
         $date = new \DateTime($request->request->get('date'));
+        dump($date);
         $date = $date->modify('monday this week');
         for ($i = 0; $i < $oneWeek; $i++) {
             $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => $date, 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
