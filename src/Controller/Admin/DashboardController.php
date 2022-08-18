@@ -38,12 +38,11 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Ordinairev3');
+            ->setTitle('Décompte Ordinaire');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Repas', 'fas fa-bowl-food', Meal::class);
         yield MenuItem::linkToCrud('Section', 'fas fa-list', Section::class);
