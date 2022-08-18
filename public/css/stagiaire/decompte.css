@@ -3,9 +3,37 @@
     grid-template-columns: repeat(7, 1fr);
 }
 
-.top{
-    font: small-caps bold 24px/1 sans-serif;
+.calendar > div {
+    height: 100px;
+    width: 100%;
+    border: black solid 1px;
 }
+.calendar > div > form > label {
+    line-height: 0;
+}
+.calendar > div > p {
+    font-size: large;
+    line-height: 0;
+    /*margin-left: 10%;*/
+}
+
+.mon1>p, .tue1>p, .wed1>p, .thu1>p, .fri1>p, .sat1>p, .sun1>p{
+    margin-left: 10%;
+}
+
+.mois{
+    font: small-caps bold 120px/1 sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.jour{
+    display: flex;
+    justify-content: center;
+}
+
 .mon {
     grid-column: 1;
 }
@@ -32,10 +60,48 @@
 
 .sun {
     grid-column: 7;
-    font: small-caps bold 24px/1 sans-serif;
 }
 
-div {
-    align-self: center;
-    justify-self: center;
+/*remplacement de la checkbox carrée par une checkbox arrondie et effet de validation*/
+
+.checkbox {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox:hover .checkbox_check {
+    background: rgb(10, 60, 98);
+}
+
+.checkbox_input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.checkbox_input:checked + .checkbox_check {
+    background: rgb(10, 60, 98);
+    stroke-dashoffset: 0;
+}
+
+.checkbox_check {
+    border: 0.15rem solid rgb(10, 60, 98);
+    stroke: #f9f9f9;
+    stroke-dasharray: 25;
+    stroke-dashoffset: 25;
+    stroke-linecap: round;
+    stroke-width: 0.2em;
+    border-radius: 1em;
+    fill: none;
+    transition: background 0.4s, stroke-dashoffset
+    0.4s;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

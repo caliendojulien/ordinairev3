@@ -11,32 +11,43 @@ body {
     /*justify-content: space-between;*/
     margin: 0;
     position: relative;
-    min-height: 91.7vh;
+    min-height: 75.2vh;
     padding-bottom: 5em;
+    padding-top: 7em;
+}
+
+.headerfix {
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 header {
     padding-top: 1em;
-    background: linear-gradient(180deg, rgba(64, 115, 158, 0.5) 0%, rgba(64, 115, 158, 0) 100%);
+    background: linear-gradient(180deg, rgba(64, 115, 158, 1) 5%, rgb(255, 255, 255, 1) 100%);
 }
 
-ul {
+nav ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 5%;
     align-content: center;
-    margin-inline-end: 100px;
+    margin-inline-end: 10px;
+    padding-bottom: 10px;
 }
 
-li {
+nav ul li {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 130%;
 }
 
-li, a {
+nav ul li, a {
     text-decoration: none;
     list-style: none;
     color: rgb(10, 60, 98);
+    white-space: nowrap;
 }
 
 h1 {
@@ -46,29 +57,12 @@ h1 {
 
 .bonjour{
     color: rgba(7, 153, 146, 1);
+    font-size: 80%;
 }
 
 li, a:hover {
     color: rgba(10, 189, 227, 1);
     cursor: pointer;
-}
-
-input.custom {
-    accent-color: green;
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
-}
-
-input.custom:checked {
-    -webkit-appearance: checkbox;
 }
 
 footer {

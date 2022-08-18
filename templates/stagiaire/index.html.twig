@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/stagiaire/index.css') }}">
+{% endblock %}
+
 {% block title %}
-Stagiaire dash board
+    Mensuel
 {% endblock %}
 
 {% block body %}
-    {% for c in calendar %}
-        <a href="{{ path('stagiaire_decompte', {'month':  c | date('m') , 'year': c | date('Y')}) }}"><p>{{ c | date('F Y', 'Europe/Paris') }}</p></a>
-    {% endfor %}
+    <div>
+        {% for c in calendar %}
+            <a href="{{ path('stagiaire_decompte', {'month':  c | date('m') , 'year': c | date('Y')}) }}"><p>{{ c | date('F Y', 'Europe/Paris') }}</p></a>
+        {% endfor %}
+    </div>
 {% endblock %}
 

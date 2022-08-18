@@ -12,33 +12,36 @@
 </head>
 
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><img src="{{ asset('media/ico/CMFP.png') }}" alt="" width="100px"></li>
-            <li><a href="{{ path('main_home') }}">Accueil</a></li>
-            <li><a href="{{ path('main_infos') }}">Liens utiles</a></li>
-            {% if app.user %}
-                {% if is_granted('ROLE_CDS') %}
-                    <li><a href="{{ path('sectionHead_home') }}">Decompte Rationnaire</a></li>
-                    <li><a href="{{ path('sectionHead_section') }}">Créer une section</a></li>
-                    <li><a href="{{ path('app_register') }}">Créer un utilisateur</a></li>
-                {% elseif is_granted('ROLE_STAGIAIRE') %}
-                    <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
-                {% elseif is_granted('ROLE_ORDINAIRE') %}
-                    <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
+<div class="headerfix">
+    <header>
+        <nav>
+            <ul>
+                <li><img src="{{ asset('media/ico/CMFP.png') }}" alt="" width="100px"></li>
+                <li><a href="{{ path('main_home') }}">Accueil</a></li>
+                <li><a href="{{ path('main_infos') }}">Liens utiles</a></li>
+                {% if app.user %}
+                    {% if is_granted('ROLE_CDS') %}
+                        <li><a href="{{ path('sectionHead_home') }}">Decompte Rationnaire</a></li>
+                        <li><a href="{{ path('sectionHead_section') }}">Ajouter une section</a></li>
+                        <li><a href="{{ path('app_register') }}">Ajouter un utilisateur</a></li>
+                    {% elseif is_granted('ROLE_STAGIAIRE') %}
+                        <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
+                    {% elseif is_granted('ROLE_ORDINAIRE') %}
+                        <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path('main_home') }}" class="bonjour">Bonjour {{ app.user.grade }} {{ app.user.name }} {{ app.user.firstname }}</a>
+                        <a href="{{ path('app_logout') }}" class="bonjour">Me déconnecter <img
+                                    src="{{ asset('media/ico/Deconnection.png') }}" alt="Deconnection" width="10%"></a>
+                    </li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
                 {% endif %}
-                <li>
-                    <a href="{{ path('main_home') }}" class="bonjour">Bonjour {{ app.user.grade }} {{ app.user.name }} {{ app.user.firstname }}</a>
-                    <a href="{{ path('app_logout') }}" class="bonjour">Me déconnecter <img
-                                src="{{ asset('media/ico/Deconnection.png') }}" alt="Deconnection" width="20px"></a>
-                </li>
-            {% else %}
-                <li><a href="{{ path('app_login') }}">Connexion</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</header>
+            </ul>
+        </nav>
+    </header>
+</div>
+
 <main>{% block body %}{% endblock %}</main>
 <footer>
     <nav>
@@ -60,5 +63,6 @@
         </ul>
     </nav>
 </footer>
+
 </body>
 </html>
