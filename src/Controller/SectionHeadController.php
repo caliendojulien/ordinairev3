@@ -36,6 +36,7 @@ class SectionHeadController extends AbstractController
         $date = $date->modify('monday this week');
         for ($i = 0; $i < $oneWeek; $i++) {
             $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => $date, 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
+
             if (!$exist) {
                 $meal = new Meal();
                 $meal->setDate($date);
