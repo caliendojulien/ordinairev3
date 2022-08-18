@@ -1,5 +1,6 @@
 
 function addWeekMidi(userId,value) {
+    let date = document.getElementById('datePicker').value
     const headers = new Headers({
         "Content-Type": "application/x-www-form-urlencoded"
     });
@@ -20,6 +21,7 @@ function addWeekMidi(userId,value) {
 }
 
 function addWeekSoir(userId,value) {
+    let date = document.getElementById('datePicker').value
     const headers = new Headers({
         "Content-Type": "application/x-www-form-urlencoded"
     });
@@ -77,4 +79,11 @@ function updateSoir(date, userId, value) {
     };
 
     fetch("/stagiaire/addSoir", opts);
+}
+
+function uncheck() {
+    let checkboxes = document.getElementsByClassName('check')
+    for (let checkbox of checkboxes) {
+        checkbox.checked = false;
+    }
 }
