@@ -1,48 +1,62 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+    Decompte
+{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/stagiaire/decompte.css') }}">
 {% endblock %}
+
 {% block body %}
     <div class="calendar">
-        <div class="thu top">{{ calendar[0] | date('F Y') }}</div>
-        <div class="mon top">Lundi</div>
-        <div class="tue top">Mardi</div>
-        <div class="wed top">Mercredi</div>
-        <div class="thu top">Jeudi</div>
-        <div class="fri top">Vendredi</div>
-        <div class="sat top">Samedi</div>
-        <div class="sun top">Dimanche</div>
+        <div class="thu mois"><p>{{ calendar[0] | date('F', "Europe/Paris") }}</p></div>
+        <div class="mon jour"><p>Lundi</p></div>
+        <div class="tue jour"><p>Mardi</p></div>
+        <div class="wed jour"><p>Mercredi</p></div>
+        <div class="thu jour"><p>Jeudi</p></div>
+        <div class="fri jour"><p>Vendredi</p></div>
+        <div class="sat jour"><p>Samedi</p></div>
+        <div class="sun jour"><p>Dimanche</p></div>
         {% for c in calendar %}
-            <div class="{% if c | date("N") == 1 %}mon
-                        {% elseif c | date("N") == 2 %}tue
-                        {% elseif c | date("N") == 3 %}wed
-                        {% elseif c | date("N") == 4 %}thu
-                        {% elseif c | date("N") == 5 %}fri
-                        {% elseif c | date("N") == 6 %}sat
-                        {% elseif c | date("N") == 7 %}sun
+            <div class="{% if c | date("N") == 1 %}mon1
+                        {% elseif c | date("N") == 2 %}tue1
+                        {% elseif c | date("N") == 3 %}wed1
+                        {% elseif c | date("N") == 4 %}thu1
+                        {% elseif c | date("N") == 5 %}fri1
+                        {% elseif c | date("N") == 6 %}sat1
+                        {% elseif c | date("N") == 7 %}sun1
                         {% endif %}
             ">
 
-
-                <p>{{ c | date("d/m/Y", "Europe/Paris") }}</p>
+                <p>{{ c | date("d", "Europe/Paris") }}</p>
                 {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
 
                     <form>
-                        MIDI<input class="custom" type="checkbox"
-                                {% for m in meals %}
-                                    {% if m.date | date == c | date and m.midi == true %}
-                                        checked
-                                    {% endif %}
-                                {% endfor %}
-                                   onchange="updateMidi('{{ c | date() }}', {{ app.user.id }},this)">
-                        SOIR<input class="custom" type="checkbox"
-                                {% for m in meals %}
-                                    {% if m.date | date == c | date and m.soir == true %}
-                                        checked
-                                    {% endif %}
-                                {% endfor %}
-                                   onchange="updateSoir('{{ c | date() }}', {{ app.user.id }}, this)">
+                        <label class="checkbox">
+                            <p>Midi</p><input class="checkbox_input" type="checkbox"
+                                    {% for m in meals %}
+                                        {% if m.date | date == c | date and m.midi == true %}
+                                            checked
+                                        {% endif %}
+                                    {% endfor %}
+                                              onchange="updateMidi('{{ c | date() }}', {{ app.user.id }},this)">
+                            <svg class="checkbox_check" width="11"
+                                 height="11">
+                                <polyline points="9,3 4,8 1,5"></polyline>
+                            </svg>
+                        </label>
+                        <label class="checkbox">
+                            <p>Soir</p><input class="checkbox_input" type="checkbox"
+                                    {% for m in meals %}
+                                        {% if m.date | date == c | date and m.soir == true %}
+                                            checked
+                                        {% endif %}
+                                    {% endfor %}
+                                              onchange="updateSoir('{{ c | date() }}', {{ app.user.id }}, this)">
+                            <svg class="checkbox_check" width="11"
+                                 height="11">
+                                <polyline points="9,3 4,8 1,5"></polyline>
+                            </svg>
+                        </label>
                     </form>
 
                 {% endif %}
@@ -52,8 +66,3 @@
     </div>
 
 {% endblock %}
-
-        {% block title %}
-            Décompte stagiaire
-
-        {% endblock %}
