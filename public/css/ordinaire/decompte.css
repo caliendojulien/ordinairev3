@@ -1,12 +1,38 @@
-
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
 
-.top{
-    font: small-caps bold 24px/1 sans-serif;
+.calendar > div {
+    height: 90px;
+    width: 90%;
+    border: black solid 1px;
 }
+.calendar > div > form > label {
+    /*line-height: 0;*/
+}
+/*recentrage jours*/
+.calendar > div > p {
+    font-size: large;
+}
+
+.mon1>p, .tue1>p, .wed1>p, .thu1>p, .fri1>p, .sat1>p, .sun1>p{
+    margin-left: 10%;
+}
+
+.mois{
+    font: small-caps bold 40px/1 sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.jour{
+    display: flex;
+    justify-content: center;
+}
+
 .mon {
     grid-column: 1;
 }
@@ -33,10 +59,14 @@
 
 .sun {
     grid-column: 7;
-    font: small-caps bold 24px/1 sans-serif;
 }
 
-div {
-    align-self: center;
-    justify-self: center;
+.repas{
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+}
+
+.count{
+    text-align: center;
 }
