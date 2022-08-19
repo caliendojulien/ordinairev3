@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block title %}
-    Mensuel
+    Décompte repas
 {% endblock %}
 
 {% block body %}
     <div id="calendrier">
         {% for c in calendar %}
-            <a href="{{ path('stagiaire_decompte', {'month':  c | date('m') , 'year': c | date('Y')}) }}"><p>{{ c | date('F Y', 'Europe/Paris') }}</p></a>
+            <a href="{{ path('stagiaire_decompte', {'month':  c | date('m') , 'year': c | date('Y')}) }}"><p>{{ c | format_datetime(pattern='MMMM YYYY', locale='fr') }}</p></a>
         {% endfor %}
     </div>
 {% endblock %}

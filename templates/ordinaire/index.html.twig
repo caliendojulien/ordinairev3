@@ -10,6 +10,6 @@ Ordinaire
 
 {% block body %}
     {% for c in calendar %}
-        <a href="{{ path('ordinaire_decompte', {'month': c | date('m'), 'year': c | date('Y')}) }}"><p>{{ c |date('F Y') }}</p></a>
+        <a href="{{ path('ordinaire_decompte', {'month': c | date('m'), 'year': c | date('Y')}) }}"><p>{{ c | format_datetime(pattern='MMMM YYYY', locale='fr') }}</p></a>
     {% endfor %}
 {% endblock %}

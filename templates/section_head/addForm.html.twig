@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    {{ form_start(sectionForm) }}
-    {{ form_row(sectionForm.name) }}
-    {{ form_row(sectionForm.endDate) }}
-    <input type="submit">
-    {{ form_end(sectionForm) }}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/registration/register.css') }}">
 {% endblock %}
-
 {% block title %}
     Nouvelle section
 {% endblock %}
+{% block body %}
+<div class="contenu">
+    <h1>Créer une section</h1>
+    {{ form_start(sectionForm) }}
+    {{ form_row(sectionForm.name) }}
+    {{ form_row(sectionForm.endDate) }}
+    <button type="submit" class="btn">Enregistrer</button>
+    {{ form_end(sectionForm) }}
+</div>
+{% endblock %}
+
+
 

@@ -4,21 +4,22 @@
     <link rel="stylesheet" href="{{ asset('css/section_head/index.css') }}">
 {% endblock %}
 
-{% block title %}Decompte rationnaire {% endblock %}
+{% block title %}Decompte rationnaire{% endblock %}
 
 {% block body %}
-    <input type="date" id="datePicker" value="{{ 'now' | date('Y-m-d') }}" onchange="uncheck()">
-
+    <div>
+        <p>Sélctionner une date :</p>
+        <input type="date" id="datePicker" value="{{ 'now' | date('Y-m-d') }}" min="{{ 'now' | date('Y-m-d') }}" onchange="uncheck()">
+    </div>
     <div class="tableau">
         {% for section in sections %}
-
             <h3 class="column1">{{ section.name }}</h3>
             <h4 class="column2">Numéro de carte</h4>
             <h4 class="column3">Grade</h4>
             <h4 class="column4">Nom</h4>
             <h4 class="column5">Prénom</h4>
             <h4 class="column6">MIDI - Du lundi au jeudi</h4>
-            <h4 class="column7">Soir de Lundi à Jeudi</h4>
+            <h4 class="column7">SOIR - Du Lundi à jeudi</h4>
             {% for user in users %}
                 {% if user.section == section %}
                     <div class="column2"><a href="{{ path('sectionHead_detailstagiaire', {'id': user.id}) }}">{{ user.card }}</a></div>
@@ -27,7 +28,7 @@
                     <div class="column5">{{ user.firstName }}</div>
                     <div class="column6">
                         <label class="checkbox">
-                        <input class="checkbox_input" type="checkbox" onchange="addWeekMidi({{ user.id }},this)">
+                        <input class="checkbox_input check" type="checkbox" onchange="addWeekMidi({{ user.id }},this)">
                             <svg class="checkbox_check" width="11"
                                  height="11">
                                 <polyline points="9,3 4,8 1,5"></polyline>
@@ -36,7 +37,7 @@
                     </div>
                     <div class="column7">
                         <label class="checkbox">
-                        <input class="checkbox_input" type="checkbox" onchange="addWeekSoir({{ user.id }},this)">
+                        <input class="checkbox_input  check" type="checkbox" onchange="addWeekSoir({{ user.id }},this)">
                         <svg class="checkbox_check" width="11"
                              height="11">
                             <polyline points="9,3 4,8 1,5"></polyline>
@@ -46,6 +47,6 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
-        <script src="{{ asset('js/decompte.js') }}"></script>
     </div>
+    <script src="{{ asset('js/decompte.js') }}"></script>
 {% endblock %}
