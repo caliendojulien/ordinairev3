@@ -2,6 +2,12 @@
 
 * {
     font-family: 'Roboto', sans-serif;
+    margin:0; /* enlever les marges */
+    padding: 0;
+
+    text-decoration: none; /* enlever le surlignage */
+    list-style-type:none; /* enlever les puces */
+
 }
 
 body {
@@ -9,45 +15,53 @@ body {
     /*display: flex;*/
     /*flex-direction: column;*/
     /*justify-content: space-between;*/
-    margin: 0;
-    position: relative;
-    min-height: 75.2vh;
-    padding-bottom: 5em;
-    padding-top: 7em;
-}
 
-.headerfix {
-    position: fixed;
-    width: 100%;
-    top: 0;
+
+
+
 }
 
 header {
-    padding-top: 1em;
-    background: linear-gradient(180deg, rgba(64, 115, 158, 1) 5%, rgb(255, 255, 255, 1) 100%);
+    background: linear-gradient(180deg, rgba(64, 115, 158, 0.5) 0%, rgba(64, 115, 158, 0) 100%);
+
+    height: 80px;
+}
+#logo{
+    position: absolute;
+    margin: 1.5% 0 0 5%;
+
 }
 
-nav ul {
+#nav{
     display: flex;
     justify-content: center;
-    gap: 5%;
-    align-content: center;
-    margin-inline-end: 10px;
-    padding-bottom: 10px;
+    gap: 2%;
 }
 
-nav ul li {
+ul {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    font-size: 130%;
+
+
 }
 
-nav ul li, a {
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height: 30px;
+    font-size: 15px;
+    margin-left: 5%;
+    margin-top: 5%;
+
+
+}
+
+li, a {
     text-decoration: none;
     list-style: none;
     color: rgb(10, 60, 98);
-    white-space: nowrap;
 }
 
 h1 {
@@ -57,23 +71,81 @@ h1 {
 
 .bonjour{
     color: rgba(7, 153, 146, 1);
-    font-size: 80%;
 }
 
-li, a:hover {
+
+a:hover{
     color: rgba(10, 189, 227, 1);
+    transition: 0.4s;
+
+
+}
+
+input.custom {
+    accent-color: green;
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
     cursor: pointer;
 }
 
+input.custom:checked {
+    -webkit-appearance: checkbox;
+}
+
 footer {
+
+    display: flex;
+    justify-content: space-between;
+
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 5em;
+    height: 7em;
     background: linear-gradient(180deg, rgba(47, 54, 64, 0) 0%, rgba(64, 115, 158, 0.5) 100%);
+
 }
 
-.social {
-    display: flex;
-    flex-direction: row;
+#footer{
+    margin: 1.3% 0 0.5% 4.5%;
+    width: auto;
+
 }
+
+.fontFooter{
+    font-size: 75%;
+    width: 200%;
+    margin-top: 1%;
+
+}
+
+#social {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+
+    margin-right: 5%;
+    width: 10%;
+}
+.social{
+
+    display: flex;
+    margin-top: 2%;
+    width: 25px;
+    height: 25px;
+}
+
+
+
+
+
+
+
+
+
