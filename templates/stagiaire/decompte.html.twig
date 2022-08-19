@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    Decompte
+    Decompte Rationnaire
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/stagiaire/decompte.css') }}">
@@ -24,12 +24,9 @@
                         {% elseif c | date("N") == 5 %}fri1
                         {% elseif c | date("N") == 6 %}sat1
                         {% elseif c | date("N") == 7 %}sun1
-                        {% endif %}
-            ">
-
+                        {% endif %}">
                 <p>{{ c | date("d", "Europe/Paris") }}</p>
                 {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
-
                     <form>
                         <label class="checkbox">
                             <p>Midi</p><input class="checkbox_input" type="checkbox"
@@ -58,11 +55,9 @@
                             </svg>
                         </label>
                     </form>
-
                 {% endif %}
             </div>
             <script src="{{ asset('js/decompte.js') }}"></script>
         {% endfor %}
     </div>
-
 {% endblock %}

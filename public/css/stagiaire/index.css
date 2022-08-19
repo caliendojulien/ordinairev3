@@ -1,11 +1,7 @@
-div {
+#calendrier {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-}
-
-div>a {
     font-size: larger;
 
 }
