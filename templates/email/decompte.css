@@ -1,0 +1,41 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.top{
+    font: small-caps bold 24px/1 sans-serif;
+}
+.mon {
+    grid-column: 1;
+}
+
+.tue {
+    grid-column: 2;
+}
+
+.wed {
+    grid-column: 3;
+}
+
+.thu {
+    grid-column: 4;
+}
+
+.fri {
+    grid-column: 5;
+}
+
+.sat {
+    grid-column: 6;
+}
+
+.sun {
+    grid-column: 7;
+    font: small-caps bold 24px/1 sans-serif;
+}
+
+div {
+    align-self: center;
+    justify-self: center;
+}
