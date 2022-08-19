@@ -23,10 +23,10 @@
             {% set repasSoir = 0 %}
             {% set repasMidi = 0 %}
             {% for m in meals %}
-                {% if m.date | date() == c | date() and m.midi == true %}
+                {% if m.date | date('m-d') == c | date('m-d') and m.midi == true %}
                     {% set repasMidi = repasMidi + 1 %}
                 {% endif %}
-                {% if m.date | date() == c | date() and m.soir == true %}
+                {% if m.date | date('m-d') == c | date('m-d') and m.soir == true %}
                     {% set repasSoir = repasSoir + 1 %}
                 {% endif %}
 
