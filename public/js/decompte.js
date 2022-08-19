@@ -1,43 +1,89 @@
 
 function addWeekMidi(userId,value) {
     let date = document.getElementById('datePicker').value
-    let xhr = new XMLHttpRequest();
-    let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
-    console.log(data)
-    xhr.open('POST', '/chefDeSection/addWeekMidi')
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.send(data);
+    const headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+    });
+
+    const data = new URLSearchParams({
+        'userId' : userId,
+        'value' : value.checked,
+        'date' : date
+    });
+
+    const opts = {
+        method: 'POST',
+        headers: headers,
+        body: data
+    };
+
+    fetch("/chefDeSection/addWeekMidi", opts);
 }
 
 function addWeekSoir(userId,value) {
     let date = document.getElementById('datePicker').value
-    let xhr = new XMLHttpRequest();
-    let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
-    console.log(data)
-    xhr.open('POST', '/chefDeSection/addWeekSoir')
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.send(data);
+    const headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+    });
+
+    const data = new URLSearchParams({
+        'userId' : userId,
+        'value' : value.checked,
+        'date' : date
+    });
+
+    const opts = {
+        method: 'POST',
+        headers: headers,
+        body: data
+    };
+
+    fetch("/chefDeSection/addWeekSoir", opts);
 }
 
 function updateMidi(date, userId, value) {
-    let xhr = new XMLHttpRequest();
-    let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
-console.log(data)
-    xhr.open('POST', '/stagiaire/addMidi')
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.send(data);
+    const headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+    });
+
+    const data = new URLSearchParams({
+        'userId' : userId,
+        'value' : value.checked,
+        'date' : date
+    });
+
+    const opts = {
+        method: 'POST',
+        headers: headers,
+        body: data
+    };
+
+    fetch("/stagiaire/addMidi", opts);
 }
 
 function updateSoir(date, userId, value) {
-    let xhr = new XMLHttpRequest();
-    let data = "userId=" + userId + '&date=' + date + '&value=' + value.checked;
+    const headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+    });
 
-    xhr.open('POST', '/stagiaire/addSoir')
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
-    xhr.send(data);
+    const data = new URLSearchParams({
+        'userId' : userId,
+        'value' : value.checked,
+        'date' : date
+    });
+
+    const opts = {
+        method: 'POST',
+        headers: headers,
+        body: data
+    };
+
+    fetch("/stagiaire/addSoir", opts);
 }
 
-function coucou() {
-    console.log('hey')
+function uncheck() {
+    let checkboxes = document.getElementsByClassName('check')
+    for (let checkbox of checkboxes) {
+        checkbox.checked = false;
+    }
 }
-

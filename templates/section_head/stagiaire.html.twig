@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>{{ user.grade }} {{ user.name }} {{ user.firstName }}</p>
+    {% for c in calendar %}
+        <a href="{{ path('sectionHead_detaildecompte', {'id': user.id,'month':  c | date('m') , 'year': c | date('Y')}) }}"><p>{{ c | date('F Y', 'Europe/Paris') }}</p></a>
+    {% endfor %}
+{% endblock %}
+
+{% block title %}
+{{ user.grade }} {{ user.name }} {{ user.firstName }}
+{% endblock %}
+

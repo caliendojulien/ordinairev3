@@ -4,7 +4,7 @@
 {% block title %}Hello SectionHeadController!{% endblock %}
 
 {% block body %}
-    <input type="date" id="datePicker" value="{{ 'now' | date('Y-m-d') }}">
+    <input type="date" id="datePicker" value="{{ 'now' | date('Y-m-d') }}" onchange="uncheck()">
 
     <div class="tableau">
         {% for section in sections %}
@@ -14,14 +14,14 @@
                 class="column4">Prenom</h4><h4 class="column5">Midi de Lundi à Jeudi</h4><h4 class="column6">Soir de Lundi à Jeudi</h4>
             {% for user in users %}
                 {% if user.section == section %}
-                    <div class="column1">{{ user.card }}</div>
+                    <div class="column1"><a href="{{ path('sectionHead_detailstagiaire', {'id': user.id}) }}">{{ user.card }}</a></div>
                     <div class="column2">{{ user.grade }}</div>
                     <div class="column3">{{ user.name }}</div>
                     <div class="column4">{{ user.firstName }}</div>
                     <div class="column5">
-                        <input type="checkbox" onchange="addWeekMidi({{ user.id }},this)"></div>
+                        <input class="check" type="checkbox" onchange="addWeekMidi({{ user.id }},this)"></div>
                     <div class="column6">
-                        <input type="checkbox" onchange="addWeekSoir({{ user.id }},this)"></div>
+                        <input class="check" type="checkbox" onchange="addWeekSoir({{ user.id }},this)"></div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
