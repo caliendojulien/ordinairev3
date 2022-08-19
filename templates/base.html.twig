@@ -16,25 +16,40 @@
     <img id="logo" src="{{ asset('media/ico/CMFP.png') }}" alt="" width="100px">
     <nav>
         <ul>
-            <div id="nav">
-
+            <li id="nav">
                 <li class="box"><a href="{{ path('main_home') }}">Accueil</a></li>
                 <li><a href="{{ path('main_infos') }}">Informations</a></li>
                 {% if app.user %}
                     {% if is_granted('ROLE_CDS') %}
-                        <li><a href="{{ path('sectionHead_home') }}">Decompte Rationnaire</a></li>
-                        <li><a href="{{ path('sectionHead_section') }}">Créer une section</a></li>
-                        <li><a href="{{ path('app_register') }}">Créer un utilisateur</a></li>
+                        <div class="dropdown">
+                            <li>Gestion</li>
+                            <div class="dropdown-content">
+                                <div><a href="{{ path('sectionHead_home') }}">Decompte Rationnaire</a></div>
+                                <div><a href="{{ path('sectionHead_section') }}">Créer une section</a></div>
+                                <div><a href="{{ path('app_register') }}">Créer un utilisateur</a></div>
+                            </div>
+                        </div>
                     {% elseif is_granted('ROLE_STAGIAIRE') %}
-                        <li><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></li>
+                        <div class="dropdown">
+                            <li>Gestion</li>
+                            <div class="dropdown-content">
+                                <div><a href="{{ path('stagiaire_home') }}">Decompte Rationnaire</a></div>
+                            </div>
+                        </div>
                     {% elseif is_granted('ROLE_ORDINAIRE') %}
-                        <li><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></li>
+                        <div class="dropdown">
+                            <li>Gestion</li>
+                            <div class="dropdown-content">
+                                <div><a href="{{ path('app_ordinaire') }}">Decompte Rationnaire</a></div>
+                            </div>
+                        </div>
                     {% endif %}
                     <li>
                         <a href="{{ path('main_home') }}"
-                           class="bonjour">Bonjour {{ app.user.grade }} {{ app.user.name }} {{ app.user.firstname }}</a>
-                        <a href="{{ path('app_logout') }}" class="bonjour">Me déconnecter <img
-                                    src="{{ asset('media/ico/Deconnection.png') }}" alt="Deconnection" width="20px"></a>
+                           class="bonjour">{{ app.user.grade }} {{ app.user.name }} {{ app.user.firstname }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_logout') }}" class="bonjour"><img src="{{ asset('media/ico/Deconnection.png') }}" alt="Deconnection" width="15px">Se deconnecter</a>
                     </li>
                 {% else %}
                     <li><a href="{{ path('app_login') }}">Connexion</a></li>
@@ -43,23 +58,26 @@
         </ul>
     </nav>
 </header>
-<main>{% block body %}{% endblock %}</main>
+<main class="scroll">{% block body %}{% endblock %}</main>
 <footer>
-        {#  {{ 'now' | date('d/m/Y','Europe/Paris') }} #}
-        <div id="footer">
+    {#  {{ 'now' | date('d/m/Y','Europe/Paris') }} #}
+    <div id="footer">
+        <div>
             <li><a class="fontFooter" href="">A propos</a></li>
             <li><a class="fontFooter" href="">Signaler un problème</a></li>
         </div>
-        <div id="social">
-            <a  class="social" href="https://www.facebook.com/defensemobilite"><img src="{{ asset('media/ico/FB.png') }}"
-                                                                        alt="Facebook"></a>
-            <a class="social" href="https://twitter.com/defensemobilite"><img src="{{ asset('media/ico/Twitter.png') }}"
-                                                                   alt="Twitter"></a>
-            <a class="social" href="https://www.youtube.com/channel/UCtM9JA5PIRqTajiwcLpphpA"><img
-                            src="{{ asset('media/ico/YouTube.png') }}" alt="Youtube"></a>
-            <a class="social" href="https://www.instagram.com/defensemobilite/"><img src="{{ asset('media/ico/Insta.png') }}"
-                            alt="Instagram" width="30px"></a>
-        </div>
+    </div>
+    <div id="social">
+        <a class="social" href="https://www.facebook.com/defensemobilite"><img src="{{ asset('media/ico/FB.png') }}"
+                                                                               alt="Facebook"></a>
+        <a class="social" href="https://twitter.com/defensemobilite"><img src="{{ asset('media/ico/Twitter.png') }}"
+                                                                          alt="Twitter"></a>
+        <a class="social" href="https://www.youtube.com/channel/UCtM9JA5PIRqTajiwcLpphpA"><img
+                    src="{{ asset('media/ico/YouTube.png') }}" alt="Youtube"></a>
+        <a class="social" href="https://www.instagram.com/defensemobilite/"><img
+                    src="{{ asset('media/ico/Insta.png') }}"
+                    alt="Instagram" width="30px"></a>
+    </div>
 </footer>
 </body>
 </html>
