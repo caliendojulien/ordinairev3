@@ -4,24 +4,18 @@
 }
 
 .calendar > div {
-    height: 90px;
-    width: 90%;
-    border: black solid 1px;
-}
-.calendar > div > form > label {
-    /*line-height: 0;*/
-}
-/*recentrage jours*/
-.calendar > div > p {
-    font-size: large;
+    height: 150px;
+    width: 100%;
+    border: grey solid 1px;
 }
 
-.mon1>p, .tue1>p, .wed1>p, .thu1>p, .fri1>p, .sat1>p, .sun1>p{
-    margin-left: 10%;
+/*recentrage jours*/
+.calendar > div > p {
+    font-size: 20px;
 }
 
 .mois{
-    font: small-caps bold 40px/1 sans-serif;
+    font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,6 +25,7 @@
 .jour{
     display: flex;
     justify-content: center;
+    background-color: rgba(43, 164, 217, 0.17);
 }
 
 .mon {
@@ -55,11 +50,15 @@
 
 .sat {
     grid-column: 6;
+    color: red;
 }
 
 .sun {
     grid-column: 7;
+    color: red;
 }
+
+
 
 .repas{
     display: flex;

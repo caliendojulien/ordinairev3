@@ -3,17 +3,22 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/stagiaire/decompte.css') }}">
 {% endblock %}
+
+{% block title %}
+    {{ user.grade }} {{ user.name }} {{ user.firstName }}
+{% endblock %}
+
 {% block body %}
     <h4>{{ user.grade }} {{ user.name }} {{ user.firstName }}</h4>
     <div class="calendar">
-        <div class="thu top">{{ calendar[0] | date('F Y') }}</div>
-        <div class="mon top">Lundi</div>
-        <div class="tue top">Mardi</div>
-        <div class="wed top">Mercredi</div>
-        <div class="thu top">Jeudi</div>
-        <div class="fri top">Vendredi</div>
-        <div class="sat top">Samedi</div>
-        <div class="sun top">Dimanche</div>
+        <div class="thu mois">{{ calendar[0] | format_datetime(pattern='MMMM',locale='fr') }}</div>
+        <div class="mon jour">Lundi</div>
+        <div class="tue jour">Mardi</div>
+        <div class="wed jour">Mercredi</div>
+        <div class="thu jour">Jeudi</div>
+        <div class="fri jour">Vendredi</div>
+        <div class="sat jour">Samedi</div>
+        <div class="sun jour">Dimanche</div>
         {% for c in calendar %}
             <div class="{% if c | date("N") == 1 %}mon
                         {% elseif c | date("N") == 2 %}tue
@@ -26,35 +31,44 @@
             ">
 
 
-                <p>{{ c | date("d/m/Y", "Europe/Paris") }}</p>
+                <p>{{ c | format_datetime(pattern='d', locale='fr') }}</p>
                 {% if c | date("N") != 6 and c | date("N") != 7 and date(c) > date() %}
 
                     <form>
-                        MIDI<input class="custom" type="checkbox"
-                                {% for m in meals %}
-                                    {% if m.date | date == c | date and m.midi == true %}
-                                        checked
-                                    {% endif %}
-                                {% endfor %}
-                                   onchange="updateMidi('{{ c | date() }}', {{ user.id }},this)">
-                        SOIR<input class="custom" type="checkbox"
-                                {% for m in meals %}
-                                    {% if m.date | date == c | date and m.soir == true %}
-                                        checked
-                                    {% endif %}
-                                {% endfor %}
-                                   onchange="updateSoir('{{ c | date() }}', {{ user.id }}, this)">
+                        <label class="checkbox">
+                            <p>Midi</p><input class="checkbox_input" type="checkbox"
+                                    {% for m in meals %}
+                                        {% if m.date | date == c | date and m.midi == true %}
+                                            checked
+                                        {% endif %}
+                                    {% endfor %}
+                                              onchange="updateMidi('{{ c | date() }}', {{ user.id }},this)">
+                            <svg class="checkbox_check" width="11"
+                                 height="11">
+                                <polyline points="9,3 4,8 1,5"></polyline>
+                            </svg>
+                        </label>
+                        <label class="checkbox">
+                            <p>Soir</p><input class="checkbox_input" type="checkbox"
+                                    {% for m in meals %}
+                                        {% if m.date | date == c | date and m.soir == true %}
+                                            checked
+                                        {% endif %}
+                                    {% endfor %}
+                                              onchange="updateSoir('{{ c | date() }}', {{ user.id }}, this)">
+                            <svg class="checkbox_check" width="11"
+                                 height="11">
+                                <polyline points="9,3 4,8 1,5"></polyline>
+                            </svg>
+                        </label>
                     </form>
 
                 {% endif %}
             </div>
-            <script src="{{ asset('js/decompte.js') }}"></script>
         {% endfor %}
     </div>
-
+    <script src="{{ asset('js/decompte.js') }}"></script>
 {% endblock %}
 
-{% block title %}
-    {{ user.grade }} {{ user.name }} {{ user.firstName }}
-{% endblock %}
+
 

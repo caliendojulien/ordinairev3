@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
-
 <body>
 <header>
     <img id="logo" src="{{ asset('media/ico/CMFP.png') }}" alt="" width="100px">
@@ -44,6 +43,9 @@
                             </div>
                         </div>
                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin') }}">Panneau admin</a></li>
+                    {% endif %}
                     <li>
                         <a href="{{ path('main_home') }}"
                            class="bonjour">{{ app.user.grade }} {{ app.user.name }} {{ app.user.firstname }}</a>
@@ -58,9 +60,10 @@
         </ul>
     </nav>
 </header>
-<main class="scroll">{% block body %}{% endblock %}</main>
+<main class="scroll">
+    {% block body %}{% endblock %}
+</main>
 <footer>
-    {#  {{ 'now' | date('d/m/Y','Europe/Paris') }} #}
     <div id="footer">
         <div>
             <li><a class="fontFooter" href="">A propos</a></li>

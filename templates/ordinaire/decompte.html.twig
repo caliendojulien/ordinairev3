@@ -8,7 +8,7 @@
 
 {% block body %}
     <div class="calendar">
-        <div class="thu mois">{{ calendar[0] | date('F', "Europe/Paris") }}</div>
+        <div class="thu mois">{{ calendar[0] | format_datetime(pattern='MMMM',locale='fr') }}</div>
         <div class="mon jour"><p>Lundi</p></div>
         <div class="tue jour"><p>Mardi</p></div>
         <div class="wed jour"><p>Mercredi</p></div>
@@ -17,15 +17,15 @@
         <div class="sat jour"><p>Samedi</p></div>
         <div class="sun jour"><p>Dimanche</p></div>
         {% for c in calendar %}
-            <div class="{% if c | date("N") == 1 %}mon1
-                    {% elseif c | date("N") == 2 %}tue1
-                    {% elseif c | date("N") == 3 %}wed1
-                    {% elseif c | date("N") == 4 %}thu1
-                    {% elseif c | date("N") == 5 %}fri1
-                    {% elseif c | date("N") == 6 %}sat1
-                    {% elseif c | date("N") == 7 %}sun1
+            <div class="{% if c | date("N") == 1 %}mon
+                    {% elseif c | date("N") == 2 %}tue
+                    {% elseif c | date("N") == 3 %}wed
+                    {% elseif c | date("N") == 4 %}thu
+                    {% elseif c | date("N") == 5 %}fri
+                    {% elseif c | date("N") == 6 %}sat
+                    {% elseif c | date("N") == 7 %}sun
                     {% endif %}">
-                <p>{{ c | date("d", "Europe/Paris") }}</p>
+                <p>{{ c | format_datetime(pattern='d', locale='fr') }}</p>
                 {% set repasSoir = 0 %}
                 {% set repasMidi = 0 %}
                 {% for m in meals %}
