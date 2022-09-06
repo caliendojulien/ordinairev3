@@ -32,10 +32,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: /ChefDeSection, roles: ROLE_CDS }
+        - { path: /stagiaire, roles: [ ROLE_STAGIAIRE,ROLE_CDS ] }
         - { path: /register, roles: ROLE_CDS }
-        - { path: /admin, roles: ROLE_CDS }
-        - { path: /admin, roles: ROLE_ADMIN }
-        - { path: /stagiaire, roles: ROLE_STAGIAIRE }
+        - { path: /admin, roles: [ ROLE_CDS,ROLE_ADMIN ] }
         - { path: /ordinaire, roles: ROLE_ORDINAIRE }
 
 when@test:
