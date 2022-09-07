@@ -23,8 +23,6 @@ class StagiaireController extends AbstractController
         for ($i = 0; $i < $month; $i++) {
             $calendar[$i] = strtotime("now +" . $i . " months");
         }
-        dump($calendar);
-
 
         return $this->render('stagiaire/index.html.twig', compact('calendar'));
     }
@@ -37,12 +35,10 @@ class StagiaireController extends AbstractController
         $calendar = [];
 
         $date = new \DateTime($year . '-' . $month . '-01');
-        dump(date('t', $date->getTimestamp()));
         for ($i = 0; $i < date('t', $date->getTimestamp()); $i++) {
             $calendar[$i] = strtotime('+' . $i . ' days', $date->getTimestamp());
         }
 
-        dump($calendar);
         return $this->render('stagiaire/decompte.html.twig', compact('calendar','meals'));
     }
 
@@ -50,7 +46,6 @@ class StagiaireController extends AbstractController
     public function addMidi(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date')), 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
-        dump(new \DateTime($request->request->get('date')));
         if (!$exist) {
             $meal = new Meal();
             $meal->setDate(new \DateTime($request->request->get('date')));
@@ -70,7 +65,6 @@ class StagiaireController extends AbstractController
     public function addSoir(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, MealRepository $mealRepository): Response
     {
         $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => new \DateTime($request->request->get('date')), 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
-        dump((int)$request->request->get('userId'));
         if (!$exist) {
             $meal = new Meal();
             $meal->setDate(new \DateTime($request->request->get('date')));
@@ -80,7 +74,6 @@ class StagiaireController extends AbstractController
             $entityManager->persist($meal);
             $entityManager->flush();
         } else {
-            dump($request->request->get('value'));
             $exist->setSoir($request->request->get('value') == 'true');
             $entityManager->flush();
         }

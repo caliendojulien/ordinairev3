@@ -21,7 +21,6 @@ class OrdinaireController extends AbstractController
         for ($i = 0; $i < $month; $i++) {
             $calendar[$i] = strtotime("now +" . $i . " months");
         }
-        dump($calendar);
 
 
         return $this->render('ordinaire/index.html.twig', compact('calendar'));
@@ -37,10 +36,6 @@ class OrdinaireController extends AbstractController
         }
         $meals = $mealRepository->findBetweenDate($date);
         $mealscount = [];
-
-        dump($meals);
-
-        dump($calendar);
         return $this->render('ordinaire/decompte.html.twig', compact('calendar','meals'));
     }
 }
