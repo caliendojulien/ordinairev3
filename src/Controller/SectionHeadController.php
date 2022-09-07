@@ -24,7 +24,6 @@ class SectionHeadController extends AbstractController
         $sections = $sectionRepository->createQueryBuilder('s')->where('s.endDate > :now')->setParameter('now', new \DateTime())->getQuery()->getResult();
         $users = [];
         foreach ($sections as $section) {
-            dump($userRepository->findBy(['section' => $section]));
             $users = array_merge($users, $userRepository->findBy(['section' => $section]));
         }
         return $this->render('section_head/index.html.twig', compact('users', 'sections'));
@@ -35,7 +34,7 @@ class SectionHeadController extends AbstractController
     {
         $oneWeek = 4;
         $date = new \DateTime($request->request->get('date'));
-        dump($date);
+
         $date = $date->modify('monday this week');
         for ($i = 0; $i < $oneWeek; $i++) {
             $exist = $entityManager->getRepository(Meal::class)->findOneBy(['date' => $date, 'user' => $userRepository->findOneBy(['id' => $request->request->get('userId')])]);
@@ -119,12 +118,10 @@ class SectionHeadController extends AbstractController
         $calendar = [];
 
         $date = new \DateTime($year . '-' . $month . '-01');
-        dump(date('t', $date->getTimestamp()));
         for ($i = 0; $i < date('t', $date->getTimestamp()); $i++) {
             $calendar[$i] = strtotime('+' . $i . ' days', $date->getTimestamp());
         }
 
-        dump($calendar);
         return $this->render('section_head/detail.html.twig', compact('calendar','meals','user'));
     }
 }
